@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Klaviyo London</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            background: #2C2C2C;
+            position: relative;
+        }
+
+        .slideshow-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            z-index: 1;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .slide.active {
+            opacity: 1;
+            z-index: 2;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.1) 50%, rgba(0, 0, 0, 0.3) 100%);
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .klaviyo-logo {
+            position: absolute;
+            top: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 30;
+            text-align: center;
+        }
+
+        .klaviyo-logo-text {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            font-size: 5.5vw;
+            font-weight: 400;
+            color: #FFFFFF;
+            letter-spacing: 2px;
+            display: inline-block;
+            position: relative;
+        }
+
+        /* Swallowtail flag – more square proportion, V-notch on the right */
+        .klaviyo-flag {
+            display: inline-block;
+            width: 0.5em;
+            height: 0.48em;
+            background: #FFFFFF;
+            margin-left: 0.06em;
+            position: relative;
+            vertical-align: baseline;
+            top: -0.26em;
+            clip-path: polygon(0 0, 100% 0, 72% 50%, 100% 100%, 0 100%);
+            -webkit-clip-path: polygon(0 0, 100% 0, 72% 50%, 100% 100%, 0 100%);
+        }
+
+        .welcome-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 20;
+            text-align: center;
+            color: #FFFFFF;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 0, 0, 0.3);
+            pointer-events: none;
+            margin-top: 80px;
+        }
+
+        .welcome-text h1 {
+            font-size: 8vw;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        .welcome-text h2 {
+            font-size: 4vw;
+            font-weight: 400;
+            letter-spacing: 4px;
+            opacity: 0.95;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+
+        /* Responsive font sizes for different screen sizes */
+        @media (min-width: 1920px) {
+            .klaviyo-logo-text {
+                font-size: 88px;
+            }
+            .welcome-text h1 {
+                font-size: 120px;
+            }
+            .welcome-text h2 {
+                font-size: 60px;
+            }
+        }
+
+        @media (max-width: 1920px) {
+            .klaviyo-logo-text {
+                font-size: 4.5vw;
+            }
+            .welcome-text h1 {
+                font-size: 6vw;
+            }
+            .welcome-text h2 {
+                font-size: 3vw;
+            }
+        }
+
+        @media (max-width: 1080px) {
+            .klaviyo-logo-text {
+                font-size: 36px;
+            }
+            .welcome-text h1 {
+                font-size: 48px;
+            }
+            .welcome-text h2 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="klaviyo-logo">
+        <span class="klaviyo-logo-text">klaviyo<span class="klaviyo-flag"></span></span>
+    </div>
+
+    <div class="slideshow-container">
+        <!-- Images are set as CSS background images for better compatibility -->
+        <!-- First image: Klaviyo booth at trade show -->
+        <div class="slide active" style="background-image: url('image1.jpg'); background-color: #2C2C2C;">
+        </div>
+        <!-- Second image: Party/social event -->
+        <div class="slide" style="background-image: url('image2.jpg'); background-color: #2C2C2C;">
+        </div>
+        <!-- Try alternative file extensions if images don't load -->
+        <div class="slide" style="background-image: url('image1.png'); background-color: #2C2C2C; display: none;">
+        </div>
+        <div class="slide" style="background-image: url('image2.png'); background-color: #2C2C2C; display: none;">
+        </div>
+    </div>
+
+    <div class="overlay"></div>
+
+    <div class="welcome-text">
+        <h1>Welcome to Klaviyo</h1>
+        <h2>London</h2>
+    </div>
+
+    <script>
+        // Log user agent for BrightSign compatibility
+        console.log('User Agent:', navigator.userAgent);
+        console.log('Platform:', navigator.platform);
+        console.log('Vendor:', navigator.vendor);
+        
+        // Image slideshow - changes every 3 seconds
+        const slides = document.querySelectorAll('.slide');
+        let currentSlide = 0;
+        let slideshowInterval;
+
+        // Preload images and start slideshow when ready
+        function preloadImages() {
+            const imagePromises = [];
+            const visibleSlides = [];
+            
+            slides.forEach((slide, index) => {
+                // Skip hidden slides
+                if (slide.style.display === 'none') {
+                    return;
+                }
+                
+                visibleSlides.push(slide);
+                
+                // Get background image from style attribute
+                const bgImage = slide.style.backgroundImage;
+                if (bgImage && bgImage !== 'none') {
+                    // Extract URL from background-image: url('...')
+                    const urlMatch = bgImage.match(/url\(['"]?([^'"]+)['"]?\)/);
+                    if (urlMatch && urlMatch[1]) {
+                        const imageUrl = urlMatch[1];
+                        const promise = new Promise((resolve, reject) => {
+                            const imageLoader = new Image();
+                            imageLoader.onload = () => {
+                                console.log(`✓ Image loaded: ${imageUrl}`);
+                                resolve();
+                            };
+                            imageLoader.onerror = () => {
+                                console.warn(`✗ Image failed to load: ${imageUrl}`);
+                                // Try to hide slide if image fails
+                                slide.style.display = 'none';
+                                resolve(); // Resolve anyway to continue slideshow
+                            };
+                            imageLoader.src = imageUrl;
+                        });
+                        imagePromises.push(promise);
+                    }
+                }
+            });
+
+            // Update slides array to only include visible slides
+            if (visibleSlides.length > 0) {
+                Promise.all(imagePromises).then(() => {
+                    // Start slideshow after images are loaded
+                    startSlideshow();
+                });
+            } else {
+                // No images loaded, start anyway with fallback
+                console.warn('No images loaded, starting slideshow with fallback');
+                startSlideshow();
+            }
+        }
+
+        function nextSlide() {
+            if (slides.length === 0) return;
+            
+            // Hide current slide
+            slides[currentSlide].classList.remove('active');
+            
+            // Move to next slide
+            currentSlide = (currentSlide + 1) % slides.length;
+            
+            // Show next slide
+            slides[currentSlide].classList.add('active');
+        }
+
+        function startSlideshow() {
+            // Clear any existing interval
+            if (slideshowInterval) {
+                clearInterval(slideshowInterval);
+            }
+            
+            // Start slideshow - change image every 3 seconds (3000ms)
+            slideshowInterval = setInterval(nextSlide, 3000);
+        }
+
+        // Initialize when page loads
+        window.addEventListener('load', function() {
+            // Ensure at least one slide is visible
+            if (slides.length > 0) {
+                slides[0].classList.add('active');
+            }
+            
+            // Preload images and start slideshow
+            preloadImages();
+        });
+
+        // Fallback: start slideshow even if images fail to load
+        setTimeout(() => {
+            if (!slideshowInterval) {
+                startSlideshow();
+            }
+        }, 2000);
+    </script>
+</body>
+</html>
